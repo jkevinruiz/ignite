@@ -1,7 +1,8 @@
 const initialState = {
 	popular: [],
-	new: [],
+	recent: [],
 	upcoming: [],
+	searched: [],
 };
 
 export default function gamesReducer(state = initialState, action) {
