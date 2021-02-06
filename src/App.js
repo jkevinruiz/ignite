@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getPopularGames } from './actions/games';
+import { getGames } from './actions/games';
 
 function App() {
 	const dispatch = useDispatch();
 	useEffect(() => {
-		dispatch(getPopularGames());
+		dispatch(getGames());
 	}, [dispatch]);
 	return <div></div>;
 }

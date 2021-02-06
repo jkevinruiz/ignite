@@ -6,12 +6,12 @@ export function currentYear() {
 	return today().getFullYear();
 }
 
-export function lastYear() {
-	return currentYear() - 1;
+export function lastYear(count = 1) {
+	return currentYear() - count;
 }
 
-export function nextYear() {
-	return currentYear() + 1;
+export function nextYear(count = 1) {
+	return currentYear() + count;
 }
 
 export function currentMonth() {
