@@ -15,14 +15,32 @@ function Home() {
 	const { popular, upcoming, recent } = useSelector((state) => state.games);
 
 	return (
-		<GameList>
-			<h2>Upcoming Games</h2>
-			<Games>
-				{upcoming.map((game) => (
-					<Game key={game.id} game={game} />
-				))}
-			</Games>
-		</GameList>
+		<>
+			<GameList>
+				<h2>Popular Games</h2>
+				<Games>
+					{popular.map((game) => (
+						<Game key={game.id} game={game} />
+					))}
+				</Games>
+			</GameList>
+			<GameList>
+				<h2>Upcoming Games</h2>
+				<Games>
+					{upcoming.map((game) => (
+						<Game key={game.id} game={game} />
+					))}
+				</Games>
+			</GameList>
+			<GameList>
+				<h2>Recent Games</h2>
+				<Games>
+					{recent.map((game) => (
+						<Game key={game.id} game={game} />
+					))}
+				</Games>
+			</GameList>
+		</>
 	);
 }
 
