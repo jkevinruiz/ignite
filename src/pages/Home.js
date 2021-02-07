@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getGames } from '../actions/games';
+import { getGames } from '../actions/gamesAction';
 import Game from '../components/Game';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
