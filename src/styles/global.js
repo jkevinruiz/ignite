@@ -9,12 +9,15 @@ const GlobalStyle = createGlobalStyle`
 
   html {
     scrollbar-width: thin;
-    scrollbar-color: grey white;
+    scrollbar-color: #ff7676 white;
     &::-webkit-scrollbar {
-      width: 0.5rem
+      width: 0.5rem;
     }
     &::-webkit-scrollbar-thumb {
-      background-color: darkgrey;
+      background-color: #ff7676;
+    }
+    &::-webkit-scrollbar-track-color {
+      background-color: white;
     }
   }
 

@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGames } from '../actions/gamesAction';
-import Game from '../components/Game';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import Game from '../components/Game';
+import GameDetail from '../components/GameDetail';
 
 function Home() {
 	const dispatch = useDispatch();
@@ -15,32 +16,27 @@ function Home() {
 	const { popular, upcoming, recent } = useSelector((state) => state.games);
 
 	return (
-		<>
-			<GameList>
-				<h2>Popular Games</h2>
-				<Games>
-					{popular.map((game) => (
-						<Game key={game.id} game={game} />
-					))}
-				</Games>
-			</GameList>
-			<GameList>
-				<h2>Upcoming Games</h2>
-				<Games>
-					{upcoming.map((game) => (
-						<Game key={game.id} game={game} />
-					))}
-				</Games>
-			</GameList>
-			<GameList>
-				<h2>Recent Games</h2>
-				<Games>
-					{recent.map((game) => (
-						<Game key={game.id} game={game} />
-					))}
-				</Games>
-			</GameList>
-		</>
+		<GameList>
+			<GameDetail />
+			<h2>Popular Games</h2>
+			<Games>
+				{popular.map((game) => (
+					<Game key={game.id} game={game} />
+				))}
+			</Games>
+			<h2>Upcoming Games</h2>
+			<Games>
+				{upcoming.map((game) => (
+					<Game key={game.id} game={game} />
+				))}
+			</Games>
+			<h2>Recent Games</h2>
+			<Games>
+				{recent.map((game) => (
+					<Game key={game.id} game={game} />
+				))}
+			</Games>
+		</GameList>
 	);
 }
 
