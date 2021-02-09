@@ -2,6 +2,7 @@ import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { resizeImage } from '../utils';
 
 function GameDetail() {
 	const history = useHistory();
@@ -35,14 +36,21 @@ function GameDetail() {
 					</Info>
 				</Stats>
 				<Media>
-					<img src={details.background_image} alt={`${details.name} cover`} />
+					<img
+						src={resizeImage(details.background_image, 1280)}
+						alt={`${details.name} cover`}
+					/>
 				</Media>
 				<Description>
 					<p>{details.description_raw}</p>
 				</Description>
 				<Gallery>
 					{screenshots.map((data, i) => (
-						<img src={data.image} key={data.id} alt={`screenshot_${i + 1}`} />
+						<img
+							src={resizeImage(data.image, 1280)}
+							key={data.id}
+							alt={`screenshot_${i + 1}`}
+						/>
 					))}
 				</Gallery>
 			</Detail>

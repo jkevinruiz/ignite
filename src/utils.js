@@ -34,3 +34,11 @@ export function date(opt = 'current') {
 
 	return `${year}-${month}-${day}`;
 }
+
+export function resizeImage(path, size) {
+	const image = path.match(/media\/screenshots/)
+		? path.replace('/media/screenshots', `/media/resize/${size}/-/screenshots`)
+		: path.replace('/media/games/', `/media/resize/${size}/-/games/`);
+
+	return image;
+}
