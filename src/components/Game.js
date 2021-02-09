@@ -16,12 +16,18 @@ function Game({ game }) {
 		dispatch(loadDetails(id));
 	}
 
+	const pathId = id.toString();
+
 	return (
-		<StyledGame onClick={handleLoadDetails}>
+		<StyledGame layoutId={pathId} onClick={handleLoadDetails}>
 			<Link to={`/game/${id}`}>
-				<h3>{name}</h3>
+				<motion.h3 layoutId={'title ' + pathId}>{name}</motion.h3>
 				<p>{released}</p>
-				<img src={resizeImage(image, 640)} alt={name} />
+				<motion.img
+					layoutId={'image ' + pathId}
+					src={resizeImage(image, 640)}
+					alt={name}
+				/>
 			</Link>
 		</StyledGame>
 	);

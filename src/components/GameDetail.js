@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { resizeImage } from '../utils';
 
-function GameDetail() {
+function GameDetail({ pathId }) {
 	const history = useHistory();
 	const { screenshots, details, isLoading } = useSelector(
 		(state) => state.game
@@ -20,10 +20,10 @@ function GameDetail() {
 
 	return !isLoading ? (
 		<CardOverlay className='overlay' onClick={handleCloseOverlay}>
-			<Detail>
+			<Detail layoutId={pathId}>
 				<Stats>
 					<Ratings>
-						<h3>{details.name}</h3>
+						<motion.h3 layoutId={'title ' + pathId}>{details.name}</motion.h3>
 						<p>Rating: {details.rating}</p>
 					</Ratings>
 					<Info>
@@ -36,7 +36,8 @@ function GameDetail() {
 					</Info>
 				</Stats>
 				<Media>
-					<img
+					<motion.img
+						layoutId={'image ' + pathId}
 						src={resizeImage(details.background_image, 1280)}
 						alt={`${details.name} cover`}
 					/>
@@ -66,6 +67,7 @@ const CardOverlay = styled.div`
 	position: fixed;
 	top: 0;
 	left: 0;
+	z-index: 10;
 
 	scrollbar-width: thin;
 	scrollbar-color: #ff7676 white;
@@ -80,7 +82,7 @@ const CardOverlay = styled.div`
 	}
 `;
 
-const Detail = styled.div`
+const Detail = styled(motion.div)`
 	margin: 5rem 0;
 	width: 80%;
 	border-radius: 1rem;
