@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGames } from '../actions/gamesAction';
 import styled from 'styled-components';
@@ -7,6 +8,7 @@ import Game from '../components/Game';
 import GameDetail from '../components/GameDetail';
 
 function Home() {
+	const { id: pathId } = useParams();
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -17,7 +19,7 @@ function Home() {
 
 	return (
 		<GameList>
-			<GameDetail />
+			{pathId && <GameDetail />}
 			<h2>Popular Games</h2>
 			<Games>
 				{popular.map((game) => (
