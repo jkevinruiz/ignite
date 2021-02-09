@@ -1,12 +1,24 @@
+import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { useSelector } from 'react-redux';
 
 function GameDetail() {
-	const { screenshots, details } = useSelector((state) => state.game);
+	const history = useHistory();
+	const { screenshots, details, isLoading } = useSelector(
+		(state) => state.game
+	);
 
-	return details ? (
-		<CardOverlay>
+	function handleCloseOverlay(e) {
+		const el = e.target;
+		if (el.classList.contains('overlay')) {
+			document.body.style.overflow = 'auto';
+			history.push('/');
+		}
+	}
+
+	return !isLoading ? (
+		<CardOverlay className='overlay' onClick={handleCloseOverlay}>
 			<Detail>
 				<Stats>
 					<Ratings>

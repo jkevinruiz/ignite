@@ -50,6 +50,10 @@ const GlobalStyle = createGlobalStyle`
     color: #333;
   }
 
+  img {
+    display: block;
+  }
+
 `;
 
 export default GlobalStyle;
