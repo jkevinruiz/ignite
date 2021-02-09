@@ -54,6 +54,11 @@ const GlobalStyle = createGlobalStyle`
     display: block;
   }
 
+  input, button {
+    font-family: 'Poppins', sans-serif;
+    font-weight: lighter;
+  }
+
 `;
 
 export default GlobalStyle;
