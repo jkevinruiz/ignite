@@ -11,7 +11,9 @@ import steam from '../images/steam.svg';
 import nintendo from '../images/nintendo.svg';
 import apple from '../images/apple.svg';
 import xbox from '../images/xbox.svg';
+import xboxseries from '../images/xboxseries.svg';
 import gamepad from '../images/gamepad.svg';
+import chrome from '../images/chrome.svg';
 import startempty from '../images/star-empty.png';
 import startfull from '../images/star-full.png';
 
@@ -38,13 +40,15 @@ function GameDetail({ pathId }) {
 			case 'Xbox One':
 				return xbox;
 			case 'Xbox Series S/X':
-				return xbox;
+				return xboxseries;
 			case 'PC':
 				return steam;
 			case 'Nintendo Switch':
 				return nintendo;
 			case 'iOS':
 				return apple;
+			case 'Web':
+				return chrome;
 			default:
 				return gamepad;
 		}
