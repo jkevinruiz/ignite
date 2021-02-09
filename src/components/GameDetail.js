@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { resizeImage } from '../utils';
+import placeholder from '../images/placeholder-image.png';
 
 import playstation4 from '../images/playstation.svg';
 import playstation5 from '../images/ps5.svg';
@@ -86,7 +87,11 @@ function GameDetail({ pathId }) {
 				<Media>
 					<motion.img
 						layoutId={'image ' + pathId}
-						src={resizeImage(details.background_image, 1280)}
+						src={
+							details.background_image
+								? resizeImage(details.background_image, 1280)
+								: placeholder
+						}
 						alt={`${details.name} cover`}
 					/>
 				</Media>

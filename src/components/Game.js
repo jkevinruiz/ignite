@@ -4,6 +4,7 @@ import { loadDetails } from '../actions/gameAction';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { resizeImage } from '../utils';
+import placeholder from '../images/placeholder-image.png';
 
 function Game({ game }) {
 	const { name, released, id, background_image: image } = game;
@@ -25,7 +26,7 @@ function Game({ game }) {
 				<p>{released}</p>
 				<motion.img
 					layoutId={'image ' + pathId}
-					src={resizeImage(image, 640)}
+					src={image ? resizeImage(image, 640) : placeholder}
 					alt={name}
 				/>
 			</Link>

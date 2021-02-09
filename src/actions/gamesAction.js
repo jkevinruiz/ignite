@@ -3,6 +3,7 @@ import {
 	popular_games_url,
 	upcoming_games_url,
 	recent_games_url,
+	search_games_url,
 } from '../api';
 
 export const getGames = () => async (dispatch) => {
@@ -16,5 +17,21 @@ export const getGames = () => async (dispatch) => {
 			upcoming: upcoming.data.results,
 			recent: recent.data.results,
 		},
+	});
+};
+
+export const searchGames = (name) => async (dispatch) => {
+	const searched = await axios.get(search_games_url(name));
+	dispatch({
+		type: 'SEARCH_GAMES',
+		payload: {
+			searched: searched.data.results,
+		},
+	});
+};
+
+export const clearSearchgames = () => async (dispatch) => {
+	dispatch({
+		type: 'CLEAR_SEARCH_GAMES',
 	});
 };

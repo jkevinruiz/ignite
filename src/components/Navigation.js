@@ -1,18 +1,39 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import ignite from '../images/logo.svg';
+import { searchGames } from '../actions/gamesAction';
+import { useDispatch } from 'react-redux';
 
 function Navigation() {
+	const dispatch = useDispatch();
+	const [input, setInput] = useState('');
+
+	function handleSearch(e) {
+		e.preventDefault();
+		if (input) {
+			dispatch(searchGames(input));
+			setInput('');
+		}
+	}
+
 	return (
 		<StyledNav>
 			<Logo>
 				<img src={ignite} alt='ignite' />
 				<h1>Ignite</h1>
 			</Logo>
-			<div className='search'>
-				<input type='text' spellCheck='false' />
-				<button>Search</button>
-			</div>
+			<form className='search' onSubmit={handleSearch}>
+				<input
+					type='text'
+					spellCheck='false'
+					value={input}
+					onChange={(e) => setInput(e.target.value)}
+					placeholder='search games'
+					required
+				/>
+				<button type='submit'>Search</button>
+			</form>
 		</StyledNav>
 	);
 }
@@ -26,9 +47,14 @@ const StyledNav = styled(motion.div)`
 		font-size: 1.5rem;
 		padding: 0.5rem;
 		margin-top: 1rem;
+		margin-right: 0.5rem;
 		border: none;
 		box-shadow: 0 0 1.875rem rgba(0, 0, 0, 0.2);
-		border-radius: 0.25rem 0 0 0.25rem;
+		border-radius: 0.25rem;
+
+		:focus {
+			outline-color: #ff7676;
+		}
 	}
 
 	button {
@@ -38,7 +64,7 @@ const StyledNav = styled(motion.div)`
 		border: none;
 		background: #ff7676;
 		color: white;
-		border-radius: 0 0.25rem 0.25rem 0;
+		border-radius: 0.25rem;
 	}
 `;
 
