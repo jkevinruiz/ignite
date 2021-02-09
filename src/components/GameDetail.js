@@ -11,6 +11,8 @@ import nintendo from '../images/nintendo.svg';
 import apple from '../images/apple.svg';
 import xbox from '../images/xbox.svg';
 import gamepad from '../images/gamepad.svg';
+import startempty from '../images/star-empty.png';
+import startfull from '../images/star-full.png';
 
 function GameDetail({ pathId }) {
 	const history = useHistory();
@@ -47,13 +49,26 @@ function GameDetail({ pathId }) {
 		}
 	}
 
+	function getStarRating() {
+		const stars = [];
+		const rating = Math.floor(details.rating);
+
+		for (let i = 1; i <= 5; i++) {
+			if (i <= rating) stars.push(<Star key={i} />);
+			else stars.push(<Star key={i} option='empty' />);
+		}
+
+		return stars;
+	}
+
 	return !isLoading ? (
 		<CardOverlay className='overlay' onClick={handleCloseOverlay}>
 			<Detail layoutId={pathId}>
 				<Stats>
 					<Ratings>
 						<motion.h3 layoutId={'title ' + pathId}>{details.name}</motion.h3>
-						<p>Rating: {details.rating}</p>
+						<p>Rating: {details.rating} </p>
+						{getStarRating()}
 					</Ratings>
 					<Info>
 						<h3>Platforms</h3>
@@ -146,6 +161,8 @@ const Platforms = styled(motion.div)`
 
 	img {
 		margin-left: 3rem;
+		max-width: 2rem;
+		max-height: 2rem;
 	}
 `;
 
@@ -165,8 +182,22 @@ const Ratings = styled.div`
 	h3 {
 		padding: 1.5rem 0;
 	}
+
+	img {
+		max-width: 1.5rem;
+		max-height: 1.5rem;
+		display: inline;
+	}
 `;
 
 const Gallery = styled.div``;
+
+function Star({ option }) {
+	if (option === 'empty') {
+		return <img src={startempty} alt='star' />;
+	}
+
+	return <img src={startfull} alt='star' />;
+}
 
 export default GameDetail;
