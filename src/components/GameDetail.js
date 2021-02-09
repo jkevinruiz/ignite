@@ -4,6 +4,14 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { resizeImage } from '../utils';
 
+import playstation4 from '../images/playstation.svg';
+import playstation5 from '../images/ps5.svg';
+import steam from '../images/steam.svg';
+import nintendo from '../images/nintendo.svg';
+import apple from '../images/apple.svg';
+import xbox from '../images/xbox.svg';
+import gamepad from '../images/gamepad.svg';
+
 function GameDetail({ pathId }) {
 	const history = useHistory();
 	const { screenshots, details, isLoading } = useSelector(
@@ -15,6 +23,27 @@ function GameDetail({ pathId }) {
 		if (el.classList.contains('overlay')) {
 			document.body.style.overflow = 'auto';
 			history.push('/');
+		}
+	}
+
+	function getPlatformImage(platform) {
+		switch (platform) {
+			case 'PlayStation 4':
+				return playstation4;
+			case 'PlayStation 5':
+				return playstation5;
+			case 'Xbox One':
+				return xbox;
+			case 'Xbox Series S/X':
+				return xbox;
+			case 'PC':
+				return steam;
+			case 'Nintendo Switch':
+				return nintendo;
+			case 'iOS':
+				return apple;
+			default:
+				return gamepad;
 		}
 	}
 
@@ -30,7 +59,11 @@ function GameDetail({ pathId }) {
 						<h3>Platforms</h3>
 						<Platforms>
 							{details.platforms.map((data) => (
-								<h3 key={data.platform.id}>{data.platform.name}</h3>
+								<img
+									key={data.platform.id}
+									src={getPlatformImage(data.platform.name)}
+									alt={data.platform.name}
+								/>
 							))}
 						</Platforms>
 					</Info>
