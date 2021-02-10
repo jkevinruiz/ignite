@@ -5,9 +5,10 @@ import { motion } from 'framer-motion';
 import { resizeImage } from '../utils';
 import placeholder from '../images/placeholder-image.png';
 
-import playstation4 from '../images/playstation.svg';
+import playstation3 from '../images/ps3.svg';
+import playstation4 from '../images/ps4.svg';
 import playstation5 from '../images/ps5.svg';
-import steam from '../images/steam.svg';
+import pc from '../images/pc.svg';
 import nintendo from '../images/nintendo.svg';
 import apple from '../images/apple.svg';
 import xbox from '../images/xbox.svg';
@@ -33,16 +34,20 @@ function GameDetail({ pathId }) {
 
 	function getPlatformImage(platform) {
 		switch (platform) {
+			case 'PlayStation 3':
+				return playstation3;
 			case 'PlayStation 4':
 				return playstation4;
 			case 'PlayStation 5':
 				return playstation5;
 			case 'Xbox One':
 				return xbox;
+			case 'Xbox 360':
+				return xbox;
 			case 'Xbox Series S/X':
 				return xboxseries;
 			case 'PC':
-				return steam;
+				return pc;
 			case 'Nintendo Switch':
 				return nintendo;
 			case 'iOS':

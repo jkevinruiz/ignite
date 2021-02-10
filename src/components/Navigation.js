@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import ignite from '../images/logo.svg';
 import { searchGames } from '../actions/gamesAction';
 import { useDispatch } from 'react-redux';
+import { fadeInOut } from '../animations/animation';
 
 function Navigation() {
 	const dispatch = useDispatch();
@@ -18,7 +19,7 @@ function Navigation() {
 	}
 
 	return (
-		<StyledNav>
+		<StyledNav variants={fadeInOut} initial='hidden' animate='show'>
 			<Logo>
 				<img src={ignite} alt='ignite' />
 				<h1>Ignite</h1>

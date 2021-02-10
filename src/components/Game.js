@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { resizeImage } from '../utils';
 import placeholder from '../images/placeholder-image.png';
+import { popInOut } from '../animations/animation';
 
 function Game({ game }) {
 	const { name, released, id, background_image: image } = game;
@@ -20,7 +21,13 @@ function Game({ game }) {
 	const pathId = id.toString();
 
 	return (
-		<StyledGame layoutId={pathId} onClick={handleLoadDetails}>
+		<StyledGame
+			variants={popInOut}
+			initial='hidden'
+			animate='show'
+			layoutId={pathId}
+			onClick={handleLoadDetails}
+		>
 			<Link to={`/game/${id}`}>
 				<motion.h3 layoutId={'title ' + pathId}>{name}</motion.h3>
 				<p>{released}</p>
