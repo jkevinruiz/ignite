@@ -67,6 +67,33 @@ const StyledNav = styled(motion.div)`
 		color: white;
 		border-radius: 0.25rem;
 	}
+
+	@media (max-width: 40.625em) {
+		padding: 0 0.5rem;
+
+		form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+
+			input {
+				width: 95%;
+				margin: 0;
+				font-size: 1rem;
+				text-align: center;
+			}
+
+			button {
+				display: block;
+				padding: 0.3rem 1rem;
+				margin-top: 0.5rem;
+				font-size: 1rem;
+				margin-top: 1.5rem;
+				margin-bottom: 3rem;
+			}
+		}
+	}
 `;
 
 const Logo = styled(motion.div)`

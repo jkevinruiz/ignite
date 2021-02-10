@@ -20,9 +20,13 @@ function Games({ games }) {
 const StyledGames = styled(motion.div)`
 	min-height: 80vh;
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(31.25rem, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
 	grid-column-gap: 3rem;
 	grid-row-gap: 5rem;
+
+	@media (max-width: 40.625rem) {
+		display: block;
+	}
 `;
 
 export default Games;

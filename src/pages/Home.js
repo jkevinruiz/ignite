@@ -69,6 +69,21 @@ const GameList = styled(motion.div)`
 			border-radius: 0.25rem;
 		}
 	}
+
+	@media (max-width: 40.625em) {
+		padding: 0 0.5rem;
+
+		h2 {
+			flex-direction: column;
+			padding: 1rem 0;
+
+			button {
+				display: block;
+				padding: 0.3rem 1rem;
+				margin-top: 0.5rem;
+			}
+		}
+	}
 `;
 
 export default Home;

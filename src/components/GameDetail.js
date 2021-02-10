@@ -193,7 +193,10 @@ const Media = styled(motion.div)`
 	margin-top: 5rem;
 
 	img {
-		width: 100%;
+		margin: 0 auto;
+		width: 80%;
+		min-width: 20rem;
+		border-radius: 0.25rem;
 	}
 `;
 
@@ -213,7 +216,19 @@ const Ratings = styled.div`
 	}
 `;
 
-const Gallery = styled.div``;
+const Gallery = styled.div`
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	flex-wrap: wrap;
+
+	img {
+		max-width: 26.25rem;
+		min-width: 20rem;
+		margin: 1rem 0;
+		border-radius: 0.25rem;
+	}
+`;
 
 function Star({ option }) {
 	if (option === 'empty') {
