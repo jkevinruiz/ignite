@@ -20,7 +20,7 @@ function Home() {
 
 	const { popular, upcoming, recent, searched } = games;
 
-	function handleClearSearchGames(e) {
+	function handleClearSearchGames() {
 		dispatch(clearSearchgames());
 	}
 
