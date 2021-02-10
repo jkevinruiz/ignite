@@ -22,6 +22,10 @@ const Container = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+
+	@media (max-width: 40.625rem) {
+		margin: 2rem 0;
+	}
 `;
 
 const LoadingContainer = styled(motion.div)`

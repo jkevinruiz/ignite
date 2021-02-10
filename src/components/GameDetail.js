@@ -1,5 +1,6 @@
 import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { clearSearchgames } from '../actions/gamesAction';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { resizeImage } from '../utils';
@@ -20,6 +21,7 @@ import startfull from '../images/star-full.png';
 import placeholder from '../images/placeholder-image.png';
 
 function GameDetail({ pathId }) {
+	const dispatch = useDispatch();
 	const history = useHistory();
 	const { screenshots, details, isLoading } = useSelector(
 		(state) => state.game
@@ -27,7 +29,7 @@ function GameDetail({ pathId }) {
 
 	function handleCloseOverlay(e) {
 		const el = e.target;
-		if (el.classList.contains('overlay')) {
+		if (el.classList.contains('overlay') || el.classList.contains('close')) {
 			document.body.style.overflow = 'auto';
 			history.push('/');
 		}
@@ -74,12 +76,15 @@ function GameDetail({ pathId }) {
 
 	return !isLoading ? (
 		<CardOverlay className='overlay' onClick={handleCloseOverlay}>
+			<button className='close' onClick={handleCloseOverlay}>
+				X
+			</button>
 			<Detail layoutId={pathId}>
 				<Stats>
 					<Ratings>
 						<motion.h3 layoutId={'title ' + pathId}>{details.name}</motion.h3>
 						<p>Rating: {details.rating} </p>
-						{getStarRating()}
+						<div className='stars'>{getStarRating()}</div>
 					</Ratings>
 					<Info>
 						<h3>Platforms</h3>
@@ -151,6 +156,33 @@ const CardOverlay = styled.div`
 	&::-webkit-scrollbar-track-color {
 		background-color: white;
 	}
+
+	.close {
+		visibility: hidden;
+	}
+
+	@media (max-width: 40.625em) {
+		.close {
+			visibility: visible;
+			position: fixed;
+			top: 0.75rem;
+			right: 0.75rem;
+			min-height: 2rem;
+			min-width: 2rem;
+			color: black;
+			background-color: #ff7676;
+			outline: none;
+			border: none;
+			border-radius: 1rem;
+			font-weight: bold;
+			z-index: 15;
+		}
+
+		.close:active {
+			background-color: #c6c6c6;
+			color: white;
+		}
+	} ;
 `;
 
 const Detail = styled(motion.div)`
@@ -166,12 +198,24 @@ const Detail = styled(motion.div)`
 	img {
 		width: 100%;
 	}
+
+	@media (max-width: 40.625em) {
+		padding: 0.5rem;
+		width: 95%;
+		left: 3%;
+	}
 `;
 
 const Stats = styled(motion.div)`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+
+	@media (max-width: 40.625em) {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
 `;
 
 const Info = styled(motion.div)`
@@ -187,6 +231,12 @@ const Platforms = styled(motion.div)`
 		max-width: 2rem;
 		max-height: 2rem;
 	}
+
+	@media (max-width: 40.625rem) {
+		img {
+			margin: 0 0.5rem;
+		}
+	}
 `;
 
 const Media = styled(motion.div)`
@@ -194,7 +244,7 @@ const Media = styled(motion.div)`
 
 	img {
 		margin: 0 auto;
-		width: 80%;
+		width: 95%;
 		min-width: 20rem;
 		border-radius: 0.25rem;
 	}
@@ -202,6 +252,10 @@ const Media = styled(motion.div)`
 
 const Description = styled(motion.div)`
 	margin: 4rem 0;
+
+	p {
+		text-align: justify;
+	}
 `;
 
 const Ratings = styled.div`
@@ -213,6 +267,12 @@ const Ratings = styled.div`
 		max-width: 1.5rem;
 		max-height: 1.5rem;
 		display: inline;
+	}
+
+	@media (max-width: 40.625rem) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 `;
 

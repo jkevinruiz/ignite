@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getGames, clearSearchgames } from '../actions/gamesAction';
 import styled from 'styled-components';
 import { motion, AnimatePresence, AnimateSharedLayout } from 'framer-motion';
-import Game from '../components/Game';
 import Games from '../components/Games';
 import GameDetail from '../components/GameDetail';
 

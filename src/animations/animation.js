@@ -40,12 +40,12 @@ export const popInOut = {
 export const waveContainer = {
 	start: {
 		transition: {
-			staggerChildren: 0.2,
+			staggerChildren: 0.1,
 		},
 	},
 	end: {
 		transition: {
-			staggerChildren: 0.2,
+			staggerChildren: 0.1,
 		},
 	},
 };
@@ -61,6 +61,7 @@ export const waveCircle = {
 
 export const bounceTransition = {
 	duration: 0.4,
-	yoyo: Infinity,
-	ease: 'anticipate',
+	repeat: Infinity,
+	repeatType: 'reverse',
+	ease: 'easeIn',
 };
