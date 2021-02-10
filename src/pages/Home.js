@@ -5,6 +5,7 @@ import { getGames, clearSearchgames } from '../actions/gamesAction';
 import styled from 'styled-components';
 import { motion, AnimatePresence, AnimateSharedLayout } from 'framer-motion';
 import Game from '../components/Game';
+import Games from '../components/Games';
 import GameDetail from '../components/GameDetail';
 
 function Home() {
@@ -15,9 +16,9 @@ function Home() {
 		dispatch(getGames());
 	}, [dispatch]);
 
-	const { popular, upcoming, recent, searched } = useSelector(
-		(state) => state.games
-	);
+	const games = useSelector((state) => state.games);
+
+	const { popular, upcoming, recent, searched } = games;
 
 	function handleClearSearchGames(e) {
 		dispatch(clearSearchgames());
@@ -35,31 +36,15 @@ function Home() {
 							Search Games{' '}
 							{<button onClick={handleClearSearchGames}>Clear</button>}
 						</h2>
-						<Games>
-							{searched?.map((game) => (
-								<Game key={game.id} game={game} />
-							))}
-						</Games>{' '}
+						<Games games={searched} />
 					</>
 				) : null}
 				<h2>Popular Games</h2>
-				<Games>
-					{popular.map((game) => (
-						<Game key={game.id} game={game} />
-					))}
-				</Games>
+				<Games games={popular} />
 				<h2>Upcoming Games</h2>
-				<Games>
-					{upcoming.map((game) => (
-						<Game key={game.id} game={game} />
-					))}
-				</Games>
+				<Games games={upcoming} />
 				<h2>Recent Games</h2>
-				<Games>
-					{recent.map((game) => (
-						<Game key={game.id} game={game} />
-					))}
-				</Games>
+				<Games games={recent} />
 			</AnimateSharedLayout>
 		</GameList>
 	);
@@ -84,13 +69,6 @@ const GameList = styled(motion.div)`
 			border-radius: 0.25rem;
 		}
 	}
-`;
-const Games = styled(motion.div)`
-	min-height: 80vh;
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(31.25rem, 1fr));
-	grid-column-gap: 3rem;
-	grid-row-gap: 5rem;
 `;
 
 export default Home;

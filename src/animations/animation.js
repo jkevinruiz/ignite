@@ -15,6 +15,7 @@ export const fadeInOut = {
 		},
 	},
 };
+
 export const popInOut = {
 	hidden: {
 		opacity: 0,
@@ -34,4 +35,32 @@ export const popInOut = {
 			duration: 0.75,
 		},
 	},
+};
+
+export const waveContainer = {
+	start: {
+		transition: {
+			staggerChildren: 0.2,
+		},
+	},
+	end: {
+		transition: {
+			staggerChildren: 0.2,
+		},
+	},
+};
+
+export const waveCircle = {
+	start: {
+		y: '0%',
+	},
+	end: {
+		y: '100%',
+	},
+};
+
+export const bounceTransition = {
+	duration: 0.4,
+	yoyo: Infinity,
+	ease: 'anticipate',
 };

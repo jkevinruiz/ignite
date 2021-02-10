@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { resizeImage } from '../utils';
-import placeholder from '../images/placeholder-image.png';
+import Loading from './Loading';
 
 import playstation3 from '../images/ps3.svg';
 import playstation4 from '../images/ps4.svg';
@@ -17,6 +17,7 @@ import gamepad from '../images/gamepad.svg';
 import chrome from '../images/chrome.svg';
 import startempty from '../images/star-empty.png';
 import startfull from '../images/star-full.png';
+import placeholder from '../images/placeholder-image.png';
 
 function GameDetail({ pathId }) {
 	const history = useHistory();
@@ -118,10 +119,18 @@ function GameDetail({ pathId }) {
 				</Gallery>
 			</Detail>
 		</CardOverlay>
-	) : null;
+	) : (
+		<CardOverlay style={{ '--flex': 'flex' }}>
+			<Loading />
+		</CardOverlay>
+	);
 }
 
 const CardOverlay = styled.div`
+	display: var(--flex);
+	align-items: center;
+	justify-content: center;
+
 	width: 100%;
 	min-height: 100vh;
 	overflow-y: scroll;
