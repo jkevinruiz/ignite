@@ -68,7 +68,7 @@ const StyledNav = styled(motion.div)`
 		border-radius: 0.25rem;
 	}
 
-	@media (max-width: 40.625em) {
+	@media (max-width: 45em) {
 		padding: 0 0.5rem;
 
 		form {
