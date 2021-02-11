@@ -12,8 +12,10 @@ function Home() {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(getGames());
-	}, [dispatch]);
+		if (!pathId) {
+			dispatch(getGames());
+		}
+	}, [dispatch, pathId]);
 
 	const games = useSelector((state) => state.games);
 

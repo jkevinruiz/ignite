@@ -1,6 +1,7 @@
+import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { clearSearchgames } from '../actions/gamesAction';
+import { loadDetails } from '../actions/gameAction';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { resizeImage } from '../utils';
@@ -23,9 +24,16 @@ import placeholder from '../images/placeholder-image.png';
 function GameDetail({ pathId }) {
 	const dispatch = useDispatch();
 	const history = useHistory();
+
 	const { screenshots, details, isLoading } = useSelector(
 		(state) => state.game
 	);
+
+	useEffect(() => {
+		if (isLoading && !details.name) {
+			dispatch(loadDetails(pathId));
+		}
+	}, [details.name, dispatch, isLoading, pathId]);
 
 	function handleCloseOverlay(e) {
 		const el = e.target;
